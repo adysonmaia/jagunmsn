@@ -1,0 +1,2 @@
+JagunKet :: fechar conexao, nao esta fechando corretamente a conexao, fecha de forma bruta e nao avisa a camada superior que a conexao foi fechada (FIXED)
+JagunMSNCLient :: Se o usuário receber o erro de Login ou Senha inválida, e rapidamente apertar para se relogar o programa dará 'segmentation fault'.

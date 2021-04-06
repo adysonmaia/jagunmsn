@@ -1,0 +1,72 @@
+#ifndef JAGUNDB_H
+#define JAGUNDB_H
+
+#include <QObject>
+#include <QString>
+#include <QtSql>
+
+class JagunDb : public QObject
+{
+  Q_OBJECT
+
+public:
+
+    /**
+    * Construtor
+    */
+    JagunDb(QObject *parent = 0);
+    /**
+    * Destrutor
+    */
+    ~JagunDb();
+    /**
+    * Construtor
+    */
+    bool constatus; // Variavel que indica o Status da Conexão
+
+    enum QueryError
+    {
+         Qealdexist = 0, //Usuario Já existe
+         Qeqryfail = 1, // Consulta falhou
+         Qeinsertfail  = 2, //Insersão falhou
+         Qeloginfail = 3  //Login falhou
+    };
+    /**
+    * Cria a conexao com o banco
+    */
+    void createNewConnection();
+    /**
+    * Procura no Banco por um usuario especifico
+    */
+    bool searchUser(QString user_login);
+    /**
+    * Inseri um usuario no banco
+    */
+    bool insertNewUser(QString,QString,QString);
+    /**
+    * Loga um usuario no banco
+    */
+    bool loginUser(QString,QString);
+
+
+private:
+
+    QString serverLocation; //Local onde fica o servidor de Banco de Dados
+    QString dataBaseName; //Nome do banco
+    QString serverUser; //Usuario de acesso ao banco
+    QString serverPass; //Senha do usuario do banco
+    
+    QString newUserName; //Login
+    QString newUserPass; //Senha
+    QString newuserMail; //Email
+
+
+    QueryError Qerror; //Controla os eror
+
+    /**
+    * Retonar o constatus
+    */
+    bool connection();
+};
+
+#endif // JAGUNDB_H

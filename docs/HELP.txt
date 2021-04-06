@@ -1,0 +1,32 @@
+QUdpSocket
+  metodos:
+    localPort - porta gerada pelo bind
+
+como rodar uma funcao em uma thread separada
+
+(objeto,metodo,parametros [maximo 5])
+QtConcurrent::run(this,&JagunKETServer::processDatagram,datagram,addressHost,portHost);
+
+
+Calculo do tamanho do segmento JagunKet
+
+tamanho de um segmento tcp = 576 bytes
+
+pacote do tipo do dado do jagunket
+1+4+4+2 = 11 bytes de cabecalho
+
+
+como esconder a barra de titulo e deixa o menu da barra de tarefas habilitado
+JagunWindow::JagunWindow(QWidget *parent)
+        : QMainWindow(parent,Qt::Window | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint)
+
+
+
+O QUE SIGNIFICA JAGUN IN MONGOL:
+Jagun a squadron of 100 warriors 
+
+
+
+métodos utéis
+
+qRegisterMetaType

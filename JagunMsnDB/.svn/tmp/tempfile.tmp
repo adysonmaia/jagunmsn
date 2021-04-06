@@ -1,0 +1,47 @@
+#ifndef JAGUNDB_H
+#define JAGUNDB_H
+
+#include <QObject>
+#include <QString>
+#include <QtSql>
+
+class JagunDb : public QObject
+{
+  Q_OBJECT
+
+public:
+    JagunDb(QObject *parent = 0);
+    ~JagunDb();
+    bool constatus;
+
+    enum QueryError
+    {
+         Qealdexist = 0,
+         Qeqryfail = 1,
+         Qeinsertfail  = 2
+    };
+
+    void createNewConnection();
+    bool searchUser(QString user_login);
+    bool insertNewUser(QString,QString,QString);
+
+
+private:
+
+    QString serverLocation;
+    QString dataBaseName;
+    QString serverUser;
+    QString serverPass;
+    
+    QString newUserName;
+    QString newUserPass;
+    QString newuserMail;
+
+
+    QueryError Qerror;
+
+    bool connection();
+    bool querystatus();
+};
+
+#endif // JAGUNDB_H

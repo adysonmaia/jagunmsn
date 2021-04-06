@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/qcapim/!svn/ver/231/JagunParser
+END
+JagunParser.pro
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/qcapim/!svn/ver/138/JagunParser/JagunParser.pro
+END
+jagunparsermessageinformation.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/qcapim/!svn/ver/231/JagunParser/jagunparsermessageinformation.h
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/qcapim/!svn/ver/203/JagunParser/main.cpp
+END
+teste.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/qcapim/!svn/ver/203/JagunParser/teste.cpp
+END
+jagunparsertoxml.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/231/JagunParser/jagunparsertoxml.cpp
+END
+jagunparserfromxml.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/qcapim/!svn/ver/231/JagunParser/jagunparserfromxml.cpp
+END
+teste.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/qcapim/!svn/ver/203/JagunParser/teste.h
+END
+jagunparsertoxml.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/qcapim/!svn/ver/231/JagunParser/jagunparsertoxml.h
+END
+jagunparserfromxml.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/231/JagunParser/jagunparserfromxml.h
+END
+jagunparsermessageinformation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/qcapim/!svn/ver/86/JagunParser/jagunparsermessageinformation.cpp
+END

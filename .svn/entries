@@ -1,0 +1,55 @@
+9
+
+dir
+250
+http://subversion.assembla.com/svn/qcapim
+http://subversion.assembla.com/svn/qcapim
+
+
+
+2009-06-01T00:54:23.001585Z
+250
+fabiormoura
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+080cfd25-d5d9-4c59-82ea-70d02a200d8b
+
+JagunKetServer
+dir
+
+JagunMSNClient
+dir
+
+JagunParser
+dir
+
+JagunKet
+dir
+
+docs
+dir
+
+JagunMsnDB
+dir
+
+JagunMSNServer
+dir
+
+JagunKetPackageInformation
+dir
+
+JagunKETGuiTest
+dir
+

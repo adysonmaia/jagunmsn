@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/qcapim/!svn/ver/217/JagunKetServer
+END
+jagunketserver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/217/JagunKetServer/jagunketserver.cpp
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/qcapim/!svn/ver/9/JagunKetServer/main.cpp
+END
+jagunketserver.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/qcapim/!svn/ver/106/JagunKetServer/jagunketserver.h
+END
+jagunketconnection.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/qcapim/!svn/ver/216/JagunKetServer/jagunketconnection.cpp
+END
+jagunketonnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/75/JagunKetServer/jagunketonnection.h
+END
+JagunKetServer.pro
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/97/JagunKetServer/JagunKetServer.pro
+END
+jagunketconnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/216/JagunKetServer/jagunketconnection.h
+END

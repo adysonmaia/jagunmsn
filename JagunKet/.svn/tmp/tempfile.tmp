@@ -1,0 +1,281 @@
+#include "jagunket.h"
+#include "jagunpackageinformation.h"
+
+JagunKET::JagunKET(QObject *parent) : QObject(parent)
+{   
+    connect(this,SIGNAL(stateChanged(QAbstractSocket::SocketState)),this,SLOT(setState(QAbstractSocket::SocketState)));
+    emit stateChanged(QAbstractSocket::UnconnectedState);
+
+    udpSocket                     = 0;
+    receiveController             = 0;
+    sendController                = 0;
+    portHost                      = 0;
+    idConnection                  = 0;
+
+    timerNewConnection  = new JagunKETTimer(this,MAX_TRY_ATTEMPTS_NEW_CONNECTION);
+    timerNewConnection->setIntervalCounting(TIMER_INTERVAL_NEW_CONNECTION);
+    connect(timerNewConnection,SIGNAL(alert()),this,SLOT(tryConnect()));
+    connect(timerNewConnection,SIGNAL(finished()),this,SLOT(checkStateNewConnection()));
+
+    qDebug() << "JagunKET:: Novo Socket Criado";
+
+
+}
+
+void JagunKET::setState(QAbstractSocket::SocketState newState)
+{
+    QAbstractSocket::SocketState oldState = state;
+    state = newState;
+
+    if(state == QAbstractSocket::ConnectingState)
+    {
+        qDebug() << "JagunKET:: Estado - Conectando ao destinatario";
+        return;
+    }
+
+    if(state == QAbstractSocket::ConnectedState)
+    {
+        timerNewConnection->stop();
+        qDebug() << "JagunKET:: Estado - Conectado ao destinatario";
+        emit connected();
+        return;
+    }
+
+    if(state == QAbstractSocket::UnconnectedState)
+    {
+        qDebug() << "JagunKET:: Estado - Desconectado";
+        if(oldState == QAbstractSocket::ClosingState)
+        {
+            emit disconnected();
+        }
+        return;
+    }
+
+    if(state == QAbstractSocket::ClosingState)
+    {
+        qDebug() << "JagunKET:: Estado - Desconectando do destinatario";
+        return;
+    }
+}
+
+void JagunKET::connectToHost(const QHostAddress & address, quint16 port)
+{
+    switch (state)
+    {
+        case QAbstractSocket::ClosingState:
+            return;
+        case QAbstractSocket::ConnectingState:
+            return;
+        case QAbstractSocket::ConnectedState:
+            qDebug() <<"JagunKET:: Ja existe uma conexao ativa";
+            // TODO - emitir sinal de erro
+            return;
+            break;
+        case QAbstractSocket::UnconnectedState:
+            break;
+        default:
+            return;
+    }
+
+    // primeira vez que tenta comectar, cria o udp socket
+    if(!udpSocket)
+    {
+        udpSocket = new QUdpSocket(this);
+        connect(udpSocket, SIGNAL(readyRead()), this, SLOT(arrivedDatagram()));
+
+        // tenta criar uma porta para escuta
+        if(!udpSocket->bind())
+        {
+            qDebug() << "JagunKET:: Nao existe porta disponivel";
+            //TODO - emitir o sinal de error
+            return;
+        }
+    }
+    emit stateChanged(QAbstractSocket::ConnectingState);
+    addressHost = address;
+    portHost    = port;
+    tryConnect();
+    timerNewConnection->start();
+
+    qDebug() << "JagunKET:: Escutando a porta: " << udpSocket->localPort();
+    qDebug() << "JagunKET:: Enviando Pacote do tipo : " << JagunPackageInformation::getLiteralTypePackage(JagunPackageInformation::ETPNewConnection);
+    qDebug() << "JagunKET:: Enviando Para : " << addressHost << " Porta: " << portHost;
+
+}
+
+void JagunKET::checkStateNewConnection()
+{
+    if(state != QAbstractSocket::ConnectedState)
+    {
+        qDebug() << "JagunKET:: Erro - Impossivel criar nova conexao";
+        emit stateChanged(QAbstractSocket::UnconnectedState);
+        emit error(EEJKServerNotResponse);
+    }
+
+}
+
+void JagunKET::tryConnect()
+{
+    if(state == QAbstractSocket::ConnectingState)
+    {
+        QByteArray datagram;
+        QDataStream out(&datagram, QIODevice::WriteOnly);
+        out << (quint8) JagunPackageInformation::ETPNewConnection;
+
+        udpSocket->writeDatagram(datagram,addressHost,portHost);
+    }
+}
+
+void JagunKET::close()
+{
+    switch (state)
+    {
+        case QAbstractSocket::ClosingState :
+        case QAbstractSocket::UnconnectedState :
+        case QAbstractSocket::ConnectedState :
+            break;
+
+
+        case QAbstractSocket::ConnectingState :
+            qDebug() << "JagunKET:: Impossivel fechar conexao";
+            //TODO - emitir o sinal de error
+            return;
+        default:
+            return;
+    }
+    //TODO - enviar pacote do tipo conexao fechada
+    emit stateChanged(QAbstractSocket::ClosingState);
+}
+
+
+
+void JagunKET::arrivedDatagram()
+{
+    if(state == QAbstractSocket::UnconnectedState)
+    {
+        qDebug() << "JagunKET:: Pacote recebido mas ignorado. Motivo: Nao foi estabelecido uma conexao oficial como o destinatario";
+        return;
+    }
+
+    QHostAddress address;
+    quint16 port;
+    QByteArray *datagram = new QByteArray();
+
+    datagram->resize(udpSocket->pendingDatagramSize());
+    udpSocket->readDatagram(datagram->data(), datagram->size(),&address, &port);
+
+    if(address != addressHost || port != portHost)
+    {
+        qDebug() << "JagunKET:: Pacote recebido mas ignorado. Motivo: remetente desconhecido";
+        delete datagram;
+        return;
+    }
+
+    processDatagram(datagram);
+
+}
+
+//TODO - lembrar de deletar o datagrama depois que o processou
+void JagunKET::processDatagram(QByteArray *datagram)
+{
+    QDataStream in(datagram, QIODevice::ReadOnly);
+    quint8 typePackage;
+    in >> typePackage;
+    switch (typePackage)
+    {
+        case(JagunPackageInformation::ETPNewConnection):
+            qDebug() << "JagunKET:: Pacote recebido incorreto. Tipo: " << JagunPackageInformation::getLiteralTypePackage(typePackage);
+            return;
+            break;
+
+        case(JagunPackageInformation::ETPConnectionEstablished):
+            qDebug() << "JagunKET:: Pacote recebido. Tipo: " << JagunPackageInformation::getLiteralTypePackage(typePackage);
+            if(state != QAbstractSocket::ConnectingState)
+            {
+                qDebug() << "JagunKET:: Ja existe uma conexao aberta";
+                return;
+            }
+            quint32 id;
+            in >> id;
+            if(id <= 0)
+            {
+                qDebug() << "JagunKET:: Id invalido: " << id;
+                return;
+            }
+            else
+            {
+                qDebug() << "JagunKET:: Id da conexao: " << id;
+            }
+            delete datagram;
+            idConnection = id;
+            //TODO - criar controlador de send e receive
+            emit stateChanged(QAbstractSocket::ConnectedState);
+            break;
+
+        //TODO - criar os outros casos
+        default:
+            qDebug() << "JagunKET:: Pacote recebido incorreto. Tipo: " << JagunPackageInformation::getLiteralTypePackage(typePackage);
+            return;
+            break;
+    }
+}
+
+void JagunKET::send(QByteArray * data)
+{
+    switch (state)
+    {
+        case QAbstractSocket::ClosingState :
+        case QAbstractSocket::UnconnectedState :
+        case QAbstractSocket::ConnectingState :
+
+            qDebug() << "JagunKET:: Nao foi possivel enviar o dado : sem conexao";
+            //TODO - emitir o sinal de error
+            return;
+        case QAbstractSocket::ConnectedState :
+            break;
+        default:
+            qDebug() << "JagunKET:: Nao foi possivel enviar o dado : estado indefenido";
+            return;
+    }
+
+    if(bufferMessages.length() == MAX_BUFFER)
+    {
+        qDebug() << "JagunKET:: Nao foi possivel enviar o dado : buffer cheio";
+        //TODO - emitir o sinal de error
+        return;
+    }
+    bufferMessages << data;
+    trySend();
+}
+
+void JagunKET::trySend()
+{
+    if (!sendController->stillSending() && !bufferMessages.isEmpty()) {
+        QByteArray* data;
+        data = bufferMessages.first();
+        bufferMessages.pop_front();
+        sendController->send(data);
+    }
+}
+
+void JagunKET::sendSuccess()
+{
+    trySend();
+}
+
+void JagunKET::receiveFailure()
+{
+
+}
+
+void JagunKET::receiveSuccess(QByteArray *data)
+{
+
+}
+
+void JagunKET::sendFailure()
+{
+
+}
+
+

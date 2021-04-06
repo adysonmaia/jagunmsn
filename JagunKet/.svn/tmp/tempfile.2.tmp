@@ -1,0 +1,145 @@
+#ifndef JAGUNKET_H
+#define JAGUNKET_H
+
+/**
+ * Tamanho maximo do buffer de mensagens
+ */
+#define MAX_BUFFER 10
+/**
+ * Numero maximo de tentativas de nova conexao
+ */
+#define MAX_TRY_ATTEMPTS_NEW_CONNECTION 10
+/**
+ * Intervalo para tentar uma nova conexao
+ */
+#define TIMER_INTERVAL_NEW_CONNECTION 2000
+
+#include <QtCore>
+#include <QtNetwork>
+
+#include "jagunketsendcontroller.h"
+#include "jagunketreceivecontroller.h"
+#include "jagunkettimer.h"
+
+/**
+ * classe responsavel pelo envio e recebimento de dados
+ */
+class JagunKET : public QObject
+{
+    Q_OBJECT
+public:
+    /**
+     * Construtor
+     */
+    JagunKET(QObject *parent = 0);
+    /**
+     * Envia um pedido de conexao a um host especificado pelo endereco e porta
+     */
+    virtual void connectToHost(const QHostAddress & address, quint16 port);
+    /**
+     * fecha a conexao depois que todos os dados forem enviados
+     */
+    virtual void close();
+    /**
+     * Envia um dado ao destinatario
+     */
+    virtual void send(QByteArray *data);
+    /**
+     * Tipos de erros
+     */
+    enum EErrorJagunKET
+    {
+        EEJKServerNotResponse = 0
+    };
+protected:
+    /**
+     * Processa o datagrama, redirecionando para os controles de envio ou recebimento
+     */
+    virtual void processDatagram(QByteArray *datagram);
+    /**
+     * tenta enviar uma mensagem do buffer
+     */
+    void trySend();
+signals:
+    /**
+     * sinal emitido quando o estado da conexao muda
+     */
+    void stateChanged(QAbstractSocket::SocketState socketState);
+    /**
+     * sinal emitido quando a conexao foi estabelecida
+     */
+    void connected();
+    /**
+     * sinal emitido quando o socket desconectou do destinatario
+     */
+    void disconnected();
+    /**
+     * sinal emitido quando houver algum erro em um processo
+     */
+    void error(EErrorJagunKET error);
+protected slots:
+    /**
+     * muda o estado da conexao
+     */
+     void setState(QAbstractSocket::SocketState newState);
+    /**
+     * executado quando um novo datagrama e' recebido
+     */
+    virtual void arrivedDatagram();
+    /**
+     * executado quando houver falha no recebimento de um dado do destinatario
+     */
+    virtual void receiveFailure();
+    /**
+     * executado quando o controlador de recebimento termina de receber um dado
+     */
+    virtual void receiveSuccess(QByteArray *data);
+    /**
+     * Captura o sinal de falha ao enviar o dado do controlador de envio
+     */
+    virtual void sendFailure();
+    /**
+     * captura o sinal de dado enviado com sucesso do controlador de envio.
+     * Depois chama trySend() para enviar o proximo dado
+     */
+    virtual void sendSuccess();
+    /**
+     * checa o estado quando acontece o maximo de timeouts para a tentativa de nova conexao, se o estado nao e' de conectado emite um erro
+     */
+    virtual void checkStateNewConnection();
+
+    /**
+     * envia um pacote de pedido de conexao
+     */
+    virtual void tryConnect();
+private:
+<<<<<<< .mine
+=======
+    /**
+     * tenta enviar uma mensagem do buffer se o estado atual e' de conectando
+     */
+    void trySend();
+
+>>>>>>> .r25
+    // socket udp para escuta e envio de datagramas
+    QUdpSocket *udpSocket;
+    // endereco do destinatario
+    QHostAddress addressHost;
+    // porta do destinatario
+    quint16 portHost;
+    // idenficador da conexao, se nao existe conexao entao o valor e' 0
+    quint32 idConnection;
+    // buffer de mensagens que precisam ser enviadas
+    QList<QByteArray*> bufferMessages;
+    // temporizador de controle de tentativa de conexao
+    JagunKETTimer *timerNewConnection;
+    // estado da conexao
+    QAbstractSocket::SocketState state;
+    // controlador dos pacotes enviados
+    JagunKETSendController *sendController;
+    // controlador dos pacotes recebidos
+    JagunKETReceiveController *receiveController;
+
+};
+
+#endif // JAGUNKET_H

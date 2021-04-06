@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/qcapim/!svn/ver/250/JagunMSNClient
+END
+jagunmsncontact.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/qcapim/!svn/ver/184/JagunMSNClient/jagunmsncontact.cpp
+END
+JagunMSNClient.pro
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/159/JagunMSNClient/JagunMSNClient.pro
+END
+jagunimageusermenu.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/142/JagunMSNClient/jagunimageusermenu.h
+END
+jagunchatwindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunchatwindow.h
+END
+jagunadduserdialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/158/JagunMSNClient/jagunadduserdialog.h
+END
+jagunwindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/qcapim/!svn/ver/236/JagunMSNClient/jagunwindow.h
+END
+jagunmsncontact.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/212/JagunMSNClient/jagunmsncontact.h
+END
+jagunclientcontroller.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunclientcontroller.cpp
+END
+images.qrc
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/qcapim/!svn/ver/180/JagunMSNClient/images.qrc
+END
+jagunclientcontroller.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/qcapim/!svn/ver/231/JagunMSNClient/jagunclientcontroller.h
+END
+jagunchatuseritem.ui
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/160/JagunMSNClient/jagunchatuseritem.ui
+END
+jagunuseritem.ui
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/qcapim/!svn/ver/142/JagunMSNClient/jagunuseritem.ui
+END
+endereco.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/qcapim/!svn/ver/243/JagunMSNClient/endereco.txt
+END
+jagunchatuseritem.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/qcapim/!svn/ver/229/JagunMSNClient/jagunchatuseritem.cpp
+END
+jagunlistusers.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunlistusers.cpp
+END
+jagunchatlistusers.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunchatlistusers.cpp
+END
+jagunuseritem.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/qcapim/!svn/ver/229/JagunMSNClient/jagunuseritem.cpp
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/qcapim/!svn/ver/77/JagunMSNClient/main.cpp
+END
+jagunimageusermenu.ui
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/qcapim/!svn/ver/168/JagunMSNClient/jagunimageusermenu.ui
+END
+jagunchatlistusers.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunchatlistusers.h
+END
+jagunuseritem.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/qcapim/!svn/ver/229/JagunMSNClient/jagunuseritem.h
+END
+jagunadduserdialog.ui
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/qcapim/!svn/ver/158/JagunMSNClient/jagunadduserdialog.ui
+END
+jagunchatwindow.ui
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/242/JagunMSNClient/jagunchatwindow.ui
+END
+jagunchatuseritem.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/qcapim/!svn/ver/229/JagunMSNClient/jagunchatuseritem.h
+END
+jagunwindow.ui
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/qcapim/!svn/ver/242/JagunMSNClient/jagunwindow.ui
+END
+jagunlistusers.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/qcapim/!svn/ver/238/JagunMSNClient/jagunlistusers.h
+END
+jagunimageusermenu.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/qcapim/!svn/ver/122/JagunMSNClient/jagunimageusermenu.cpp
+END
+jagunwindow.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/qcapim/!svn/ver/249/JagunMSNClient/jagunwindow.cpp
+END
+jagunadduserdialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/qcapim/!svn/ver/158/JagunMSNClient/jagunadduserdialog.cpp
+END
+jagunchatwindow.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/qcapim/!svn/ver/250/JagunMSNClient/jagunchatwindow.cpp
+END

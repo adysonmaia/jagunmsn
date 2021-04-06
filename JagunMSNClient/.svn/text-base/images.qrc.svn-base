@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/icons" >
+        <file alias="1" >resource/availableIcon.png</file>
+        <file alias="0" >resource/offlineIcon.png</file>
+        <file alias="3" >resource/awayIcon.png</file>
+        <file alias="2" >resource/busyIcon.png</file>
+    </qresource>
+    <qresource prefix="/user" >
+        <file>resource/user/mario.png</file>
+        <file>resource/user/yoda.png</file>
+        <file>resource/user/default.png</file>
+    </qresource>
+    <qresource prefix="/general" >
+        <file>resource/general/add.png</file>
+        <file>resource/general/search.png</file>
+        <file>resource/general/jagunmsn.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/qcapim/!svn/ver/249/JagunMSNServer
+END
+jagunmsnserver.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/qcapim/!svn/ver/184/JagunMSNServer/jagunmsnserver.h
+END
+jagunmsnconnection.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/qcapim/!svn/ver/249/JagunMSNServer/jagunmsnconnection.cpp
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/qcapim/!svn/ver/111/JagunMSNServer/main.cpp
+END
+JagunMSNServer.pro
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/148/JagunMSNServer/JagunMSNServer.pro
+END
+jagunmsnconnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/qcapim/!svn/ver/248/JagunMSNServer/jagunmsnconnection.h
+END
+jagunmsnserver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/qcapim/!svn/ver/184/JagunMSNServer/jagunmsnserver.cpp
+END
